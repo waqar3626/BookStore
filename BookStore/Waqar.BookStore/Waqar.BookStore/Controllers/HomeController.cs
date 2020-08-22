@@ -8,9 +8,13 @@ namespace Waqar.BookStore.Controllers
 {
     public class HomeController : Controller
     {
-        public string Index() {
+        public ViewResult Index() {
 
-            return "Welcome Waqar";
+            return View();
+        }
+        public ViewResult AboutUs()
+        {
+            return View();
         }
     }
 }
