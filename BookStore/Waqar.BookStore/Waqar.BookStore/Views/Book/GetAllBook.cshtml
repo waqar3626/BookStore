@@ -1,15 +1,37 @@
 ﻿
 @{
-    Layout = null;
+    ViewData["Title"] = "GetAllBook";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
+<div class="container">
+    <h3 class="display-4">All Books
+    </h3>
+    <div class="row">
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>GetAllBook</title>
-</head>
-<body>
-</body>
-</html>
+        <div class="col-md-4">
+
+            <div class="card mb-4 shadow-sm">
+                <svg class="bd-placeholder-image card-img-top" width="100%" height="225"></svg>
+
+                <div class="card-body">
+                    <h3 class="card-title">Book Title</h3>
+                    <p class="card-text">
+                        This Section will Display information about Book
+
+                    </p>
+
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                            <a href="#" class="btn btn-sm btn-outline-secondary">View Detail</a>
+                        </div>
+                        <small class="text-muted">Author Name</small>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+

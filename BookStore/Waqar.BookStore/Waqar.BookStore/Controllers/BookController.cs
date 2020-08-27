@@ -16,15 +16,21 @@ namespace Waqar.BookStore.Controllers
         {
             _bookRepository = new BookRepository();
         }
-        public List<BookModel> GetAllBook() {
+        public ViewResult GetAllBook() {
 
-            return _bookRepository.GetAllBook();
+            var data= _bookRepository.GetAllBook();
+            return View(data);
         }
 
-        public BookModel GetSingleBook(int BookID)
+        //public BookModel GetSingleBook(int BookID)
+        //{
+
+        //    return _bookRepository.GetSingleBook(BookID);
+        //}
+        public ViewResult GetSingleBook()
         {
 
-            return _bookRepository.GetSingleBook(BookID);
+            return View();
         }
         public List<BookModel> SearchBook(string Title,string Author)
         {

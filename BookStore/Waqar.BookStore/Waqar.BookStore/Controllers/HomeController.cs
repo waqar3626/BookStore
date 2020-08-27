@@ -16,5 +16,9 @@ namespace Waqar.BookStore.Controllers
         {
             return View();
         }
+        public ViewResult ContectUs()
+        {
+            return View();
+        }
     }
 }
