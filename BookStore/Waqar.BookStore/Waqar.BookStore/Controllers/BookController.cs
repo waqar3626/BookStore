@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Waqar.BookStore.Model;
+using Waqar.BookStore.Models;
 using Waqar.BookStore.Repository;
 
 namespace Waqar.BookStore.Controllers
@@ -27,10 +27,11 @@ namespace Waqar.BookStore.Controllers
 
         //    return _bookRepository.GetSingleBook(BookID);
         //}
-        public ViewResult GetSingleBook()
-        {
-
-            return View();
+        public ViewResult GetBook(int BookID)
+        { 
+            var data = _bookRepository.GetSingleBook(BookID);
+           
+            return View(data);
         }
         public List<BookModel> SearchBook(string Title,string Author)
         {

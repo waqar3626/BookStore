@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Waqar.BookStore.Model;
+using Waqar.BookStore.Models;
 
 namespace Waqar.BookStore.Repository
 {
@@ -12,9 +12,9 @@ namespace Waqar.BookStore.Repository
 
             return DataSource();
         }
-        public BookModel GetSingleBook(int BookID)
+        public BookModel GetSingleBook(int bookID)
         {
-            return DataSource().Where(x => x.BookID == BookID).FirstOrDefault();
+           return DataSource().Where(x => x.BookID == bookID).FirstOrDefault();
 
         }
         public List<BookModel> SearchBook(string Title, string Author)
@@ -25,10 +25,12 @@ namespace Waqar.BookStore.Repository
         private List<BookModel> DataSource() {
 
             return new List<BookModel>()
-      { new BookModel() {BookID=1, Title="Java", Author="Uzair" },
-      new BookModel() {BookID=2, Title="C++", Author="Khalid" },
-      new BookModel() {BookID=3, Title="Networking", Author="Kashif" },
-      new BookModel() {BookID=4, Title="Assambly", Author="Ali" }
+      { new BookModel() {BookID=1, Title="Java", Author="Uzair", Description="This is the description of Java Book",Category="Programming",language="English", TotalPages=137 },
+      new BookModel() {BookID=2, Title="Azure DevOps", Author="Khalid", Description="This is the description of Azure DevOps Book",Category="DevOps",language="Chinese", TotalPages=432  },
+      new BookModel() {BookID=3, Title="Networking", Author="Kashif", Description="This is the description of Networking Book",Category="Network",language="English", TotalPages=543  },
+      new BookModel() {BookID=4, Title="Assambly", Author="Ali", Description="This is the description of Assambly Book",Category="Machine Learning",language="English", TotalPages=567  },
+      new BookModel() {BookID=5, Title="PHP", Author="Kashif", Description="This is the description of PHP Book",Category="Devolper",language="English", TotalPages=342  },
+      new BookModel() {BookID=6, Title=".NET Core MVC ", Author="ishafaq", Description="This is the description of .Net Core MVC Book",Category="Framework",language="English", TotalPages=765  }
 
       };
         
