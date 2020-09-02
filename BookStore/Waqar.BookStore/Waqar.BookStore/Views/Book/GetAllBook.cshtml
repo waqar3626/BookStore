@@ -1,8 +1,8 @@
-﻿@using Waqar.BookStore.Models
+﻿
 @model IEnumerable<BookModel>
 @{
     ViewData["Title"] = "GetAllBook";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+   
 }
 
 <div class="container">
@@ -27,7 +27,7 @@
 
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="btn-group">
-                            <a href="@Url.Action("GetBook","Book",new {BookID=book.BookID })" class="btn btn-sm btn-outline-secondary">View Detail</a>
+                            <a asp-controller="book" asp-action="GetBook" asp-route-id="@book.BookID" class="btn btn-sm btn-outline-secondary">View Detail</a>
                         </div>
                         <small class="text-muted">@book.Author</small>
                     </div>

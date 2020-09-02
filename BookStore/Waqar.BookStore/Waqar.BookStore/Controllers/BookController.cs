@@ -27,9 +27,9 @@ namespace Waqar.BookStore.Controllers
 
         //    return _bookRepository.GetSingleBook(BookID);
         //}
-        public ViewResult GetBook(int BookID)
+        public ViewResult GetBook(int id)
         { 
-            var data = _bookRepository.GetSingleBook(BookID);
+            var data = _bookRepository.GetSingleBook(id);
            
             return View(data);
         }
