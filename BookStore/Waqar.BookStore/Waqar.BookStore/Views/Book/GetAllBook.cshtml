@@ -6,37 +6,46 @@
 }
 
 <div class="container">
-    <h3 class="display-4">All Books
-    </h3>
-    <div class="row">
-
-        @foreach (var book in Model)
-        {
-
-        <div class="col-md-4">
-
-            <div class="card mb-4 shadow-sm">
-                <svg class="bd-placeholder-image card-img-top" width="100%" height="225"></svg>
-
-                <div class="card-body">
-                    <h3 class="card-title">@book.Title</h3>
-                    <p class="card-text">
-                        @book.Description
-
-                    </p>
-
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="btn-group">
-                            <a asp-controller="book" asp-action="GetBook" asp-route-id="@book.BookID" class="btn btn-sm btn-outline-secondary">View Detail</a>
-                        </div>
-                        <small class="text-muted">@book.Author</small>
-                    </div>
-                   
-                </div>
-            </div>
+    <div class="row  pb-3 pt-3">
+        <h3 class="display-4">
+            All Books
+        </h3>
+        <div class=" col-6 ">
+            <a asp-controller="book" asp-action="AddNewBook" class="btn btn-outline-info float-lg-right float-center">+ Add New Book</a>
 
         </div>
-        }
+
+
     </div>
-</div>
+        <div class="row">
+
+            @foreach (var book in Model)
+            {
+
+                <div class="col-md-4">
+
+                    <div class="card mb-4 shadow-sm">
+                        <svg class="bd-placeholder-image card-img-top" width="100%" height="225"></svg>
+
+                        <div class="card-body">
+                            <h3 class="card-title">@book.Title</h3>
+                            <p class="card-text">
+                                @book.Description
+
+                            </p>
+
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a asp-controller="book" asp-action="GetBook" asp-route-id="@book.BookID" class="btn btn-sm btn-outline-secondary">View Detail</a>
+                                </div>
+                                <small class="text-muted">@book.Author</small>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            }
+        </div>
+    </div>
 

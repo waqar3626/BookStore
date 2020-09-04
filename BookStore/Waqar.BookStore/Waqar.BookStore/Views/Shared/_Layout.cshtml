@@ -39,10 +39,10 @@
                         <!-- LOGO -->
                         <a href="/" class="topnav-logo">
                             <span class="topnav-logo-lg">
-                                <img src="/assets/images/logo-light.png" alt="" height="16">
+                                <img src="/assets/images/logo-light.png" asp-append-version="true" alt="" height="16">
                             </span>
                             <span class="topnav-logo-sm">
-                                <img src="/assets/images/logo_sm_dark.png" alt="" height="16">
+                                <img src="/assets/images/logo_sm_dark.png" asp-append-version="true" alt="" height="16">
                             </span>
                         </a>
 
@@ -170,7 +170,7 @@
                                     <!-- item-->
                                     <a href="javascript:void(0);" class="dropdown-item notify-item">
                                         <div class="media">
-                                            <img class="d-flex mr-2 rounded-circle" src="/assets/images/users/avatar-2.jpg" alt="Generic placeholder image" height="32">
+                                            <img class="d-flex mr-2 rounded-circle" src="/assets/images/users/avatar-2.jpg" asp-append-version="true" alt="Generic placeholder image" height="32">
                                             <div class="media-body">
                                                 <h5 class="m-0 font-14">Erwin Brown</h5>
                                                 <span class="font-12 mb-0">UI Designer</span>
@@ -181,7 +181,7 @@
                                     <!-- item-->
                                     <a href="javascript:void(0);" class="dropdown-item notify-item">
                                         <div class="media">
-                                            <img class="d-flex mr-2 rounded-circle" src="/assets/images/users/avatar-5.jpg" alt="Generic placeholder image" height="32">
+                                            <img class="d-flex mr-2 rounded-circle" src="/assets/images/users/avatar-5.jpg" asp-append-version="true" alt="Generic placeholder image" height="32">
                                             <div class="media-body">
                                                 <h5 class="m-0 font-14">Jacob Deo</h5>
                                                 <span class="font-12 mb-0">Developer</span>
@@ -210,26 +210,34 @@
 
                                     </li>
                                     <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle arrow-none" asp-controller="home" asp-action="aboutus"  id="topnav-apps">
+                                        <a class="nav-link dropdown-toggle arrow-none" asp-controller="home" asp-action="aboutus" id="topnav-apps">
                                             <i class="uil-info-circle mr-1"></i>About
                                         </a>
 
 
                                     </li>
                                     <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle arrow-none" asp-controller="home" asp-action="contectus"  id="topnav-apps">
+                                        <a class="nav-link dropdown-toggle arrow-none" asp-controller="home" asp-action="contectus" id="topnav-apps">
                                             <i class="uil-phone mr-1"></i>Contect
                                         </a>
 
 
                                     </li>
                                     <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle arrow-none" asp-controller="book" asp-action="getallbook"  id="topnav-apps">
+                                        <a class="nav-link dropdown-toggle arrow-none" asp-controller="book" asp-action="getallbook" id="topnav-apps">
                                             <i class="uil-book-open mr-1"></i>All Books
                                         </a>
 
 
                                     </li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle arrow-none" asp-controller="book" asp-action="addnewbook" id="topnav-apps">
+                                            <i class="uil-book-open mr-1"></i>Add New Books
+                                        </a>
+
+
+                                    </li>
+
 
                                 </ul>
                             </div>

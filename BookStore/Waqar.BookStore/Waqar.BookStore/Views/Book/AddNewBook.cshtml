@@ -1,0 +1,65 @@
+﻿@model BookModel
+@{
+    ViewData["Title"] = "AddNewBook";
+}
+<div class="row  pb-3 pt-3">
+    <div class=" col-12 ">
+        <h3>Add New Book</h3>
+    </div>
+   
+
+</div>
+<form class="needs-validation" novalidate method="post" asp-action="AddNewBook" asp-controller="book">
+    <div class="row">
+        <div class="form-group col-md-6 mb-3">
+            <label for="validationCustom03">Title</label>
+            <input type="text" asp-for="Title" class="form-control" id="validationCustom03"
+                   placeholder="Enter Book Title" required>
+            <div class="invalid-feedback">
+                Please provide a valid Title.
+            </div>
+        </div>
+        <div class="form-group col-md-6 mb-3">
+            <label for="validationCustom04">Author</label>
+            <input type="text" asp-for="Author" class="form-control" id="validationCustom04"
+                   placeholder="Enter Author Name" required>
+            <div class="invalid-feedback">
+                Please provide a valid Author.
+            </div>
+        </div>
+        <div class="form-group col-md-6 mb-3">
+            <label for="validationCustom04">Total pages</label>
+            <input type="text" asp-for="TotalPages" class="form-control" id="validationCustom04"
+                   placeholder="Enter Total pages" required>
+            <div class="invalid-feedback">
+                Please provide a valid Total pages.
+            </div>
+        </div>
+        <div class="form-group col-md-6 mb-3">
+            <label for="validationCustom04">Category</label>
+            <input type="text" asp-for="Category" class="form-control" id="validationCustom04"
+                   placeholder="Enter Category" required>
+            <div class="invalid-feedback">
+                Please provide a valid Category.
+            </div>
+        </div>
+        <div class="form-group col-md-6 mb-3">
+            <label for="validationCustom04">Language</label>
+            <input type="text" asp-for="language" class="form-control" id="validationCustom04"
+                   placeholder="Enter Language" required>
+            <div class="invalid-feedback">
+                Please provide a valid Language.
+            </div>
+        </div>
+        <div class="form-group col-md-6 mb-3">
+            <label for="validationCustom05">Description</label>
+            <textarea type="text" asp-for="Description" class="form-control" id="validationCustom05"
+                      placeholder="Enter Description" required></textarea>
+            <div class="invalid-feedback">
+                Please provide a valid description.
+            </div>
+        </div>
+
+    </div>
+    <button class="btn btn-primary" type="submit"><i class="mdi mdi-content-save"></i>Add Book</button>
+</form>

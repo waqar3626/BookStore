@@ -38,5 +38,17 @@ namespace Waqar.BookStore.Controllers
 
             return _bookRepository.SearchBook(Title,Author);
         }
+
+        public ViewResult AddNewBook() {
+
+            return View();
+        }
+
+        [HttpPost]
+        public ViewResult AddNewBook(BookModel bookmodel)
+        {
+
+            return View();
+        }
     }
 }
