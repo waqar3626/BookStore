@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -10,15 +11,17 @@ namespace Waqar.BookStore.Controllers
 {
     public class BookController : Controller
     {
-        private readonly BookRepository _bookRepository=null;
+        private readonly BookRepository _bookRepository = null;
 
-        public BookController()
+        public BookController(BookRepository bookRepository)
         {
-            _bookRepository = new BookRepository();
+            _bookRepository = bookRepository;
         }
-        public ViewResult GetAllBook() {
-
-            var data= _bookRepository.GetAllBook();
+        public async Task<ViewResult> GetAllBook(bool isSuccess = false, int bookID = 0)
+        {
+            ViewBag.IsSuccess = isSuccess;
+            ViewBag.BookID = bookID;
+            var data = await _bookRepository.GetAllBook();
             return View(data);
         }
 
@@ -27,28 +30,43 @@ namespace Waqar.BookStore.Controllers
 
         //    return _bookRepository.GetSingleBook(BookID);
         //}
-        public ViewResult GetBook(int id)
-        { 
-            var data = _bookRepository.GetSingleBook(id);
-           
+        public async Task<ViewResult> GetBook(int id)
+        {
+            var data = await _bookRepository.GetSingleBook(id);
+
             return View(data);
         }
-        public List<BookModel> SearchBook(string Title,string Author)
+        public List<BookModel> SearchBook(string Title, string Author)
         {
 
-            return _bookRepository.SearchBook(Title,Author);
+            return _bookRepository.SearchBook(Title, Author);
         }
 
-        public ViewResult AddNewBook() {
+        public ViewResult AddNewBook()
+        {
 
+            ModelState.Clear();
             return View();
         }
 
         [HttpPost]
-        public ViewResult AddNewBook(BookModel bookmodel)
+        public async Task<IActionResult> AddNewBook(BookModel bookmodel)
         {
+            if (ModelState.IsValid)
+            {
+                int id = await _bookRepository.AddNewBook(bookmodel);
+                if (id > 0)
+                {
 
+                    return RedirectToAction("GetAllBook", new { isSuccess = true, bookID = id });
+                }
+            }
             return View();
+
         }
+
+
+
+
     }
 }

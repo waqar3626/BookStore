@@ -1,20 +1,95 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
+using Waqar.BookStore.Data;
 using Waqar.BookStore.Models;
 
 namespace Waqar.BookStore.Repository
 {
     public class BookRepository
     {
-        public List<BookModel> GetAllBook() {
+        private readonly BookStoreContext _Context = null;
+
+        public BookRepository(BookStoreContext context)
+        {
+
+            _Context = context;
+        }
+
+        public async Task<int> AddNewBook(BookModel model)
+        {
+            var NewBook = new Books()
+            {
+                Author = model.Author,
+                CreatedOn = DateTime.UtcNow,
+                Description = model.Description,
+                Title = model.Title,
+                TotalPages = model.TotalPages,
+                UpdatedOn = DateTime.UtcNow,
+                Category = model.Category,
+                language = model.language
+
+            };
+            await _Context.Books.AddAsync(NewBook);
+            await _Context.SaveChangesAsync();
+
+            return NewBook.BookID;
+        }
+        public async Task<List<BookModel>> GetAllBook()
+        {
+            var books = new List<BookModel>();
+            var allBooks = await _Context.Books.ToListAsync();
+            if (allBooks?.Any() == true)
+            {
+                foreach (var book in allBooks)
+                {
+                    books.Add(new BookModel()
+                    {
+                        BookID=book.BookID,
+                        Author = book.Author,
+                        CreatedOn = book.CreatedOn,
+                        Description = book.Description,
+                        Title = book.Title,
+                        TotalPages = book.TotalPages,
+                        UpdatedOn = book.UpdatedOn,
+                        Category = book.Category,
+                        language = book.language
+                    });
+
+                }
+
+                return books;
+
+            }
 
             return DataSource();
         }
-        public BookModel GetSingleBook(int bookID)
+        public async Task<BookModel> GetSingleBook(int bookID)
         {
-           return DataSource().Where(x => x.BookID == bookID).FirstOrDefault();
+            var book = await _Context.Books.FindAsync(bookID);
+
+            if (book != null)
+            {
+                var bookDetail = new BookModel() {
+                    BookID=book.BookID,
+                    Author = book.Author,
+                    CreatedOn = book.CreatedOn,
+                    Description = book.Description,
+                    Title = book.Title,
+                    TotalPages = book.TotalPages,
+                    UpdatedOn = book.UpdatedOn,
+                    Category = book.Category,
+                    language = book.language
+
+                };
+
+                return bookDetail;
+            }
+
+            return null;
 
         }
         public List<BookModel> SearchBook(string Title, string Author)
@@ -22,7 +97,8 @@ namespace Waqar.BookStore.Repository
             return DataSource().Where(x => x.Title.Contains(Title) || x.Author.Contains(Author)).ToList();
         }
 
-        private List<BookModel> DataSource() {
+        private List<BookModel> DataSource()
+        {
 
             return new List<BookModel>()
       { new BookModel() {BookID=1, Title="Java", Author="Uzair", Description="This is the description of Java Book",Category="Programming",language="English", TotalPages=137 },
@@ -33,7 +109,7 @@ namespace Waqar.BookStore.Repository
       new BookModel() {BookID=6, Title=".NET Core MVC ", Author="ishafaq", Description="This is the description of .Net Core MVC Book",Category="Framework",language="English", TotalPages=765  }
 
       };
-        
+
         }
 
     }
