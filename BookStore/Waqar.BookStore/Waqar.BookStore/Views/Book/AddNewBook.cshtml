@@ -1,4 +1,5 @@
-﻿@model BookModel
+﻿@using Waqar.BookStore.Enums
+@model BookModel
 @{
     ViewData["Title"] = "AddNewBook";
 }
@@ -56,13 +57,9 @@
         </div>
         <div class="form-group col-md-6 mb-3">
             <label for="validationCustom04">Language</label>
-            <select class="form-control select2" asp-for="language" data-toggle="select2" id="validationCustom04" required>
+            <select class="form-control select2" asp-for="LanguageID" data-toggle="select2" asp-items="Html.GetEnumSelectList<LanguageEnum>()" id="validationCustom04" required multiple>
                 <option value="">--Select Book Language--</option>
-                <option>English</option>
-                <option>Urdu</option>
-                <option>Chinees</option>
-                <option>Pashto</option>
-                <option>Hindi</option>
+            
 
             </select>
                

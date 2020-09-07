@@ -15,6 +15,9 @@ namespace Waqar.BookStore.Data
 
         public DbSet<Books> Books { get; set;   }
 
-         
+        public DbSet<Languages> Languages { get; set; }
+
+
+
     }
 }

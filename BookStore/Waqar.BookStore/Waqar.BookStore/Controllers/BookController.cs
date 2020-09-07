@@ -4,8 +4,10 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Waqar.BookStore.Models;
 using Waqar.BookStore.Repository;
+using Webgentle.BookStore.Models;
 
 namespace Waqar.BookStore.Controllers
 {
@@ -46,6 +48,12 @@ namespace Waqar.BookStore.Controllers
         {
 
             ModelState.Clear();
+            //ViewBag.Language = new List<SelectListItem>() {
+            //new SelectListItem(){Value="1",Text="English"},
+            //    new SelectListItem(){Value="2",Text="Urdu",},
+            //    new SelectListItem(){Value="3",Text="Chinees",},
+            //    new SelectListItem(){Value="4",Text="Pashto",},
+            //};
             return View();
         }
 
@@ -61,10 +69,17 @@ namespace Waqar.BookStore.Controllers
                     return RedirectToAction("GetAllBook", new { isSuccess = true, bookID = id });
                 }
             }
+            //ViewBag.Language = new List<SelectListItem>() {
+            //new SelectListItem(){Value="1",Text="English"},
+            //    new SelectListItem(){Value="2",Text="Urdu",},
+            //    new SelectListItem(){Value="3",Text="Chinees",},
+            //    new SelectListItem(){Value="4",Text="Pashto",},
+            //};
             return View();
 
         }
 
+        
 
 
 

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Reflection.Metadata.Ecma335;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using Waqar.BookStore.Enums;
+using Waqar.BookStore.Data;
 
 namespace Waqar.BookStore.Models
 {
@@ -23,9 +25,9 @@ namespace Waqar.BookStore.Models
         [Required(ErrorMessage = "Please provide a valid Category")]
 
         public string Category { get; set; }
+       
         [Required(ErrorMessage = "Please provide a valid Language")]
-
-        public string language { get; set; }
+        public int LanguageID { get; set; }
         [Required(ErrorMessage = "Please provide a valid Total Pages")]
 
         public int TotalPages { get; set; }
@@ -33,5 +35,6 @@ namespace Waqar.BookStore.Models
         public DateTime? CreatedOn { get; set; }
         public DateTime? UpdatedOn { get; set; }
 
+       
     }
 }
