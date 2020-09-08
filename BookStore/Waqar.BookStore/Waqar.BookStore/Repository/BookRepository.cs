@@ -56,7 +56,8 @@ namespace Waqar.BookStore.Repository
                         TotalPages = book.TotalPages,
                         UpdatedOn = book.UpdatedOn,
                         Category = book.Category,
-                        LanguageID = book.LanguageID
+                        LanguageID = book.LanguageID,
+                        Language=book.Language.Name
                     });
 
                 }
@@ -69,12 +70,10 @@ namespace Waqar.BookStore.Repository
         }
         public async Task<BookModel> GetSingleBook(int bookID)
         {
-            var book = await _Context.Books.FindAsync(bookID);
-
-            if (book != null)
-            {
-                var bookDetail = new BookModel() {
-                    BookID=book.BookID,
+            return await _Context.Books.Where(x => x.BookID == bookID)
+                .Select(book => new BookModel()
+                {
+                    BookID = book.BookID,
                     Author = book.Author,
                     CreatedOn = book.CreatedOn,
                     Description = book.Description,
@@ -82,14 +81,15 @@ namespace Waqar.BookStore.Repository
                     TotalPages = book.TotalPages,
                     UpdatedOn = book.UpdatedOn,
                     Category = book.Category,
-                    LanguageID = book.LanguageID
+                    LanguageID = book.LanguageID,
+                    Language = book.Language.Name
+                }
+                ).FirstOrDefaultAsync();
 
-                };
+            
 
-                return bookDetail;
-            }
-
-            return null;
+                
+          
 
         }
         public List<BookModel> SearchBook(string Title, string Author)

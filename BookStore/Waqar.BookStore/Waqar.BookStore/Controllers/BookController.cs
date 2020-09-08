@@ -14,10 +14,13 @@ namespace Waqar.BookStore.Controllers
     public class BookController : Controller
     {
         private readonly BookRepository _bookRepository = null;
+        private readonly LanguageRepository _languageRepository = null;
 
-        public BookController(BookRepository bookRepository)
+
+        public BookController(BookRepository bookRepository, LanguageRepository languageRepository)
         {
             _bookRepository = bookRepository;
+            _languageRepository = languageRepository;
         }
         public async Task<ViewResult> GetAllBook(bool isSuccess = false, int bookID = 0)
         {
@@ -44,17 +47,13 @@ namespace Waqar.BookStore.Controllers
             return _bookRepository.SearchBook(Title, Author);
         }
 
-        public ViewResult AddNewBook()
+        public async Task<ViewResult> AddNewBook()
         {
+            var model = new BookModel();
 
             ModelState.Clear();
-            //ViewBag.Language = new List<SelectListItem>() {
-            //new SelectListItem(){Value="1",Text="English"},
-            //    new SelectListItem(){Value="2",Text="Urdu",},
-            //    new SelectListItem(){Value="3",Text="Chinees",},
-            //    new SelectListItem(){Value="4",Text="Pashto",},
-            //};
-            return View();
+            ViewBag.Language   = new SelectList (await _languageRepository.GetLanguages(),"Id","Name"); 
+            return View(model);
         }
 
         [HttpPost]
@@ -69,12 +68,9 @@ namespace Waqar.BookStore.Controllers
                     return RedirectToAction("GetAllBook", new { isSuccess = true, bookID = id });
                 }
             }
-            //ViewBag.Language = new List<SelectListItem>() {
-            //new SelectListItem(){Value="1",Text="English"},
-            //    new SelectListItem(){Value="2",Text="Urdu",},
-            //    new SelectListItem(){Value="3",Text="Chinees",},
-            //    new SelectListItem(){Value="4",Text="Pashto",},
-            //};
+            ViewBag.Language = new SelectList(await _languageRepository.GetLanguages(), "Id", "Name");
+
+
             return View();
 
         }

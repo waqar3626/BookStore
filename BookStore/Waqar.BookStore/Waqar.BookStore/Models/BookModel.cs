@@ -31,7 +31,7 @@ namespace Waqar.BookStore.Models
         [Required(ErrorMessage = "Please provide a valid Total Pages")]
 
         public int TotalPages { get; set; }
-        
+        public string Language { get; set; }
         public DateTime? CreatedOn { get; set; }
         public DateTime? UpdatedOn { get; set; }
 
